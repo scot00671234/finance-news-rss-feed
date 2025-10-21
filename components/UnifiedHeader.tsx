@@ -84,7 +84,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
                 className="object-contain"
               />
             </div>
-            <span className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+            <span className="text-xl font-light tracking-wide text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
               Barclayne
             </span>
           </Link>

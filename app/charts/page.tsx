@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { FinancePrice, formatPrice, formatChange, formatChangePercent, formatVolume, formatMarketCap } from '@/lib/finance-api'
-import { ArrowUp, ArrowDown, TrendingUp, TrendingDown, BarChart3, DollarSign, Globe, Zap } from 'lucide-react'
+import { ArrowUp, ArrowDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Footer from '@/components/Footer'
 import FinanceChartModal from '@/components/FinanceChartModal'
@@ -111,15 +111,6 @@ export default function ChartsPage() {
     return sortOrder === 'asc' ? aValue - bValue : bValue - aValue
   })
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'stocks': return <BarChart3 className="w-4 h-4" />
-      case 'indices': return <TrendingUp className="w-4 h-4" />
-      case 'commodities': return <Zap className="w-4 h-4" />
-      case 'forex': return <Globe className="w-4 h-4" />
-      default: return <DollarSign className="w-4 h-4" />
-    }
-  }
 
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -158,23 +149,22 @@ export default function ChartsPage() {
             <span className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-2 block">Asset Type:</span>
             <div className="flex flex-wrap gap-2">
               {[
-                { value: 'all', label: 'All Markets', icon: <DollarSign className="w-4 h-4" /> },
-                { value: 'stocks', label: 'Stocks', icon: <BarChart3 className="w-4 h-4" /> },
-                { value: 'indices', label: 'Indices', icon: <TrendingUp className="w-4 h-4" /> },
-                { value: 'commodities', label: 'Commodities', icon: <Zap className="w-4 h-4" /> },
-                { value: 'forex', label: 'Forex', icon: <Globe className="w-4 h-4" /> }
+                { value: 'all', label: 'All Markets' },
+                { value: 'stocks', label: 'Stocks' },
+                { value: 'indices', label: 'Indices' },
+                { value: 'commodities', label: 'Commodities' },
+                { value: 'forex', label: 'Forex' }
               ].map((option) => (
                 <button
                   key={option.value}
                   onClick={() => setSelectedType(option.value as any)}
-                  className={`flex items-center space-x-2 px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
+                  className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
                     selectedType === option.value
                       ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-lg'
                       : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                   }`}
                 >
-                  {option.icon}
-                  <span>{option.label}</span>
+                  {option.label}
                 </button>
               ))}
             </div>
@@ -307,8 +297,8 @@ export default function ChartsPage() {
                         >
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-3">
-                              <div className={`p-2 rounded-lg ${getTypeColor(itemType)}`}>
-                                {getTypeIcon(itemType)}
+                              <div className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(itemType)}`}>
+                                {itemType.toUpperCase()}
                               </div>
                               <div>
                                 <div className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
