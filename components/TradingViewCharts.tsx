@@ -5,30 +5,62 @@ import TradingViewWidget from './TradingViewWidget'
 import { useTheme } from '@/contexts/ThemeContext'
 
 interface TradingViewChartsProps {
-  selectedCrypto?: string
-  onCryptoSelect?: (crypto: string) => void
+  selectedAsset?: string
+  onAssetSelect?: (asset: string) => void
 }
 
-export default function TradingViewCharts({ selectedCrypto, onCryptoSelect }: TradingViewChartsProps) {
+export default function TradingViewCharts({ selectedAsset, onAssetSelect }: TradingViewChartsProps) {
   const { isDarkMode } = useTheme()
   const [timeframe, setTimeframe] = useState<'1' | '3' | '5' | '15' | '30' | '60' | '120' | '180' | '240' | 'D' | 'W'>('D')
   const [chartStyle, setChartStyle] = useState<'0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'>('1')
+  const [selectedCategory, setSelectedCategory] = useState<'stocks' | 'indices' | 'commodities' | 'forex' | 'crypto'>('stocks')
   
-  // Popular crypto symbols for TradingView
-  const cryptoOptions = [
-    { symbol: 'BINANCE:BTCUSDT', name: 'Bitcoin (BTC/USDT)', id: 'bitcoin' },
-    { symbol: 'BINANCE:ETHUSDT', name: 'Ethereum (ETH/USDT)', id: 'ethereum' },
-    { symbol: 'BINANCE:BNBUSDT', name: 'BNB (BNB/USDT)', id: 'binancecoin' },
-    { symbol: 'BINANCE:ADAUSDT', name: 'Cardano (ADA/USDT)', id: 'cardano' },
-    { symbol: 'BINANCE:SOLUSDT', name: 'Solana (SOL/USDT)', id: 'solana' },
-    { symbol: 'BINANCE:XRPUSDT', name: 'XRP (XRP/USDT)', id: 'ripple' },
-    { symbol: 'BINANCE:DOTUSDT', name: 'Polkadot (DOT/USDT)', id: 'polkadot' },
-    { symbol: 'BINANCE:DOGEUSDT', name: 'Dogecoin (DOGE/USDT)', id: 'dogecoin' },
-    { symbol: 'BINANCE:AVAXUSDT', name: 'Avalanche (AVAX/USDT)', id: 'avalanche-2' },
-    { symbol: 'BINANCE:MATICUSDT', name: 'Polygon (MATIC/USDT)', id: 'matic-network' }
-  ]
+  // Financial asset options for TradingView
+  const assetOptions = {
+    stocks: [
+      { symbol: 'NASDAQ:AAPL', name: 'Apple Inc. (AAPL)', id: 'apple' },
+      { symbol: 'NASDAQ:MSFT', name: 'Microsoft Corp. (MSFT)', id: 'microsoft' },
+      { symbol: 'NASDAQ:GOOGL', name: 'Alphabet Inc. (GOOGL)', id: 'google' },
+      { symbol: 'NASDAQ:AMZN', name: 'Amazon.com Inc. (AMZN)', id: 'amazon' },
+      { symbol: 'NASDAQ:TSLA', name: 'Tesla Inc. (TSLA)', id: 'tesla' },
+      { symbol: 'NASDAQ:NVDA', name: 'NVIDIA Corp. (NVDA)', id: 'nvidia' },
+      { symbol: 'NYSE:JPM', name: 'JPMorgan Chase & Co. (JPM)', id: 'jpmorgan' },
+      { symbol: 'NYSE:JNJ', name: 'Johnson & Johnson (JNJ)', id: 'johnson' }
+    ],
+    indices: [
+      { symbol: 'SPX', name: 'S&P 500 (SPX)', id: 'sp500' },
+      { symbol: 'NASDAQ:NDX', name: 'NASDAQ 100 (NDX)', id: 'nasdaq100' },
+      { symbol: 'DOW', name: 'Dow Jones Industrial Average (DOW)', id: 'dowjones' },
+      { symbol: 'RUT', name: 'Russell 2000 (RUT)', id: 'russell2000' },
+      { symbol: 'VIX', name: 'VIX Volatility Index (VIX)', id: 'vix' }
+    ],
+    commodities: [
+      { symbol: 'GC', name: 'Gold (GC)', id: 'gold' },
+      { symbol: 'SI', name: 'Silver (SI)', id: 'silver' },
+      { symbol: 'CL', name: 'Crude Oil (CL)', id: 'oil' },
+      { symbol: 'NG', name: 'Natural Gas (NG)', id: 'naturalgas' },
+      { symbol: 'ZC', name: 'Corn (ZC)', id: 'corn' },
+      { symbol: 'ZS', name: 'Soybeans (ZS)', id: 'soybeans' }
+    ],
+    forex: [
+      { symbol: 'FX:EURUSD', name: 'EUR/USD', id: 'eurusd' },
+      { symbol: 'FX:GBPUSD', name: 'GBP/USD', id: 'gbpusd' },
+      { symbol: 'FX:USDJPY', name: 'USD/JPY', id: 'usdjpy' },
+      { symbol: 'FX:USDCHF', name: 'USD/CHF', id: 'usdchf' },
+      { symbol: 'FX:AUDUSD', name: 'AUD/USD', id: 'audusd' },
+      { symbol: 'FX:USDCAD', name: 'USD/CAD', id: 'usdcad' }
+    ],
+    crypto: [
+      { symbol: 'BINANCE:BTCUSDT', name: 'Bitcoin (BTC/USDT)', id: 'bitcoin' },
+      { symbol: 'BINANCE:ETHUSDT', name: 'Ethereum (ETH/USDT)', id: 'ethereum' },
+      { symbol: 'BINANCE:BNBUSDT', name: 'BNB (BNB/USDT)', id: 'binancecoin' },
+      { symbol: 'BINANCE:ADAUSDT', name: 'Cardano (ADA/USDT)', id: 'cardano' },
+      { symbol: 'BINANCE:SOLUSDT', name: 'Solana (SOL/USDT)', id: 'solana' }
+    ]
+  }
 
-  const currentCrypto = cryptoOptions.find(crypto => crypto.id === selectedCrypto) || cryptoOptions[0]
+  const currentAssets = assetOptions[selectedCategory]
+  const currentAsset = currentAssets.find(asset => asset.id === selectedAsset) || currentAssets[0]
 
   const timeframeOptions = [
     { value: '1', label: '1m' },
@@ -61,20 +93,47 @@ export default function TradingViewCharts({ selectedCrypto, onCryptoSelect }: Tr
     <div className="w-full space-y-6">
       {/* Controls */}
       <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Crypto Selection */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Asset Category Selection */}
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-              Cryptocurrency
+              Asset Category
             </label>
             <select
-              value={currentCrypto.id}
-              onChange={(e) => onCryptoSelect?.(e.target.value)}
+              value={selectedCategory}
+              onChange={(e) => {
+                setSelectedCategory(e.target.value as any)
+                const newAssets = assetOptions[e.target.value as keyof typeof assetOptions]
+                if (newAssets.length > 0) {
+                  onAssetSelect?.(newAssets[0].id)
+                }
+              }}
               className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
-              {cryptoOptions.map((crypto) => (
-                <option key={crypto.id} value={crypto.id}>
-                  {crypto.name}
+              <option value="stocks">Stocks</option>
+              <option value="indices">Indices</option>
+              <option value="commodities">Commodities</option>
+              <option value="forex">Forex</option>
+              <option value="crypto">Crypto</option>
+            </select>
+          </div>
+
+          {/* Asset Selection */}
+          <div>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+              {selectedCategory === 'stocks' ? 'Stock' : 
+               selectedCategory === 'indices' ? 'Index' :
+               selectedCategory === 'commodities' ? 'Commodity' :
+               selectedCategory === 'forex' ? 'Currency Pair' : 'Cryptocurrency'}
+            </label>
+            <select
+              value={currentAsset.id}
+              onChange={(e) => onAssetSelect?.(e.target.value)}
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              {currentAssets.map((asset) => (
+                <option key={asset.id} value={asset.id}>
+                  {asset.name}
                 </option>
               ))}
             </select>
@@ -122,16 +181,16 @@ export default function TradingViewCharts({ selectedCrypto, onCryptoSelect }: Tr
       <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-            {currentCrypto.name} - Professional Chart
+            {currentAsset.name} - Professional Chart
           </h3>
           <p className="text-sm text-slate-600 dark:text-slate-400">
-            Real-time price data and technical analysis
+            Real-time {selectedCategory} data and technical analysis
           </p>
         </div>
         
         <div className="relative">
           <TradingViewWidget
-            symbol={currentCrypto.symbol}
+            symbol={currentAsset.symbol}
             theme={isDarkMode ? 'dark' : 'light'}
             autosize={true}
             height={600}

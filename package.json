@@ -1,7 +1,7 @@
 {
-  "name": "coin-feedly",
+  "name": "barclayne",
   "version": "1.0.0",
-  "description": "Crypto News RSS Feed for Traders",
+  "description": "Barclayne - Financial Markets Intelligence Platform",
   "private": true,
   "scripts": {
     "dev": "next dev",

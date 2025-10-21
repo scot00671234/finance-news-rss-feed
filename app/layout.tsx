@@ -4,30 +4,30 @@ import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import ClientHeader from '@/components/ClientHeader'
-import PersistentTicker from '@/components/PersistentTicker'
+import FinanceTicker from '@/components/FinanceTicker'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Coin Feedly - Crypto News RSS Feed',
-  description: 'Stay updated with the latest cryptocurrency news from top sources. Real-time crypto prices, filtered news by category, and comprehensive market coverage.',
-  keywords: 'crypto news, bitcoin news, cryptocurrency, blockchain, trading, altcoins, defi, macro',
-  authors: [{ name: 'Coin Feedly' }],
+  title: 'Barclayne - Financial Markets Intelligence Platform',
+  description: 'Barclayne provides comprehensive financial market intelligence with real-time news, market data, and analysis across stocks, commodities, forex, and crypto markets.',
+  keywords: 'Barclayne, financial markets, market intelligence, stock analysis, commodity trading, forex news, crypto markets, financial data, market research, investment insights',
+  authors: [{ name: 'Barclayne' }],
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Coin Feedly - Crypto News RSS Feed',
-    description: 'Stay updated with the latest cryptocurrency news from top sources.',
+    title: 'Barclayne - Financial Markets Intelligence Platform',
+    description: 'Comprehensive financial market intelligence with real-time news, market data, and analysis across all major asset classes.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Coin Feedly - Crypto News RSS Feed',
-    description: 'Stay updated with the latest cryptocurrency news from top sources.',
+    title: 'Barclayne - Financial Markets Intelligence Platform',
+    description: 'Comprehensive financial market intelligence with real-time news, market data, and analysis.',
   },
   robots: {
     index: true,
@@ -54,7 +54,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           <ClientHeader />
-          <PersistentTicker />
+          <FinanceTicker />
           {children}
         </ThemeProvider>
       </body>

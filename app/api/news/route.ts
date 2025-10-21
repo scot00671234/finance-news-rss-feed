@@ -18,11 +18,23 @@ function generateSlug(title: string): string {
 export const dynamic = 'force-dynamic'
 
 const RSS_FEEDS = [
-  { url: "https://cointelegraph.com/rss", categories: ["bitcoin", "altcoins", "defi", "macro"], source: "CoinTelegraph" },
-  { url: "https://bitcoinist.com/feed/", categories: ["bitcoin"], source: "Bitcoinist" },
-  { url: "https://decrypt.co/feed", categories: ["altcoins", "defi"], source: "Decrypt" },
-  { url: "https://www.blockworks.co/feed", categories: ["defi", "macro"], source: "Blockworks" },
-  { url: "https://feeds.feedburner.com/CoinDesk", categories: ["bitcoin", "macro", "regulation"], source: "CoinDesk" },
+  // Finance News Sources
+  { url: "http://feeds.marketwatch.com/marketwatch/topstories", categories: ["stocks", "markets", "economics"], source: "MarketWatch" },
+  { url: "https://www.cnbc.com/id/100003114/device/rss/rss.html", categories: ["stocks", "markets", "economics"], source: "CNBC" },
+  { url: "http://feeds.reuters.com/reuters/businessNews", categories: ["markets", "economics", "stocks"], source: "Reuters Business" },
+  { url: "https://finance.yahoo.com/rss/topstories", categories: ["stocks", "markets", "economics"], source: "Yahoo Finance" },
+  { url: "https://www.thestreet.com/.rss/full", categories: ["stocks", "markets", "economics"], source: "TheStreet" },
+  { url: "https://feeds.benzinga.com/benzinga", categories: ["stocks", "markets", "economics"], source: "Benzinga" },
+  { url: "https://feeds.a.dj.com/rss/RSSMarketsMain.xml", categories: ["stocks", "markets", "economics"], source: "Wall Street Journal" },
+  { url: "https://www.ft.com/rss/home/us", categories: ["stocks", "markets", "economics"], source: "Financial Times" },
+  { url: "https://www.investopedia.com/rss/news", categories: ["stocks", "markets", "economics"], source: "Investopedia" },
+  
+  // Crypto Sources (kept for crypto category)
+  { url: "https://cointelegraph.com/rss", categories: ["crypto"], source: "CoinTelegraph" },
+  { url: "https://bitcoinist.com/feed/", categories: ["crypto"], source: "Bitcoinist" },
+  { url: "https://decrypt.co/feed", categories: ["crypto"], source: "Decrypt" },
+  { url: "https://www.blockworks.co/feed", categories: ["crypto"], source: "Blockworks" },
+  { url: "https://feeds.feedburner.com/CoinDesk", categories: ["crypto"], source: "CoinDesk" },
 ]
 
 export async function GET(request: NextRequest) {

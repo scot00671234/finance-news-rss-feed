@@ -13,70 +13,137 @@ export interface DetectedCategories {
 
 // Category keywords and their weights (matching database enum values)
 const CATEGORY_KEYWORDS = {
-  BITCOIN: {
+  STOCKS: {
     keywords: [
-      'bitcoin', 'btc', 'satoshi', 'halving', 'mining', 'hash rate',
-      'bitcoin price', 'bitcoin etf', 'bitcoin adoption', 'bitcoin wallet',
-      'lightning network', 'bitcoin core', 'bitcoin cash', 'bitcoin sv'
+      'stocks', 'stock market', 'equity', 'shares', 'trading', 'nasdaq', 'nyse',
+      'apple', 'microsoft', 'google', 'amazon', 'tesla', 'meta', 'netflix',
+      'nvidia', 'berkshire', 'johnson', 'jpmorgan', 'bank of america',
+      'earnings', 'dividend', 'ipo', 'merger', 'acquisition', 'analyst',
+      'price target', 'upgrade', 'downgrade', 'bullish', 'bearish'
     ],
     weight: 1.0
   },
-  ALTCOINS: {
+  COMMODITIES: {
     keywords: [
-      'ethereum', 'eth', 'ether', 'ethereum 2.0', 'eth2', 'merge',
-      'altcoin', 'altcoins', 'cryptocurrency', 'crypto', 'digital currency',
-      'binance coin', 'bnb', 'cardano', 'ada', 'solana', 'sol', 'polkadot',
-      'dot', 'chainlink', 'link', 'litecoin', 'ltc', 'ripple', 'xrp',
-      'dogecoin', 'doge', 'shiba inu', 'meme coin', 'token', 'coin'
+      'gold', 'silver', 'oil', 'crude oil', 'natural gas', 'copper', 'aluminum',
+      'wheat', 'corn', 'soybeans', 'coffee', 'sugar', 'cotton', 'cattle',
+      'commodities', 'futures', 'spot price', 'precious metals', 'energy',
+      'agriculture', 'industrial metals', 'soft commodities'
+    ],
+    weight: 1.0
+  },
+  FOREX: {
+    keywords: [
+      'forex', 'currency', 'exchange rate', 'usd', 'eur', 'gbp', 'jpy', 'cad',
+      'aud', 'chf', 'cny', 'inr', 'brazil real', 'mexican peso', 'euro',
+      'dollar', 'yen', 'pound', 'franc', 'yuan', 'rupee', 'fx trading',
+      'currency pair', 'central bank', 'interest rate differential'
+    ],
+    weight: 1.0
+  },
+  BONDS: {
+    keywords: [
+      'bonds', 'treasury', 'treasury bond', 'treasury bill', 'treasury note',
+      'corporate bond', 'municipal bond', 'government bond', 'yield',
+      'bond market', 'fixed income', 'credit rating', 'maturity', 'coupon',
+      'federal reserve', 'fed funds rate', 'interest rates', 'inflation'
+    ],
+    weight: 1.0
+  },
+  INDICES: {
+    keywords: [
+      's&p 500', 'sp500', 'dow jones', 'nasdaq', 'russell 2000', 'ftse',
+      'nikkei', 'dax', 'cac', 'hang seng', 'index', 'indices', 'etf',
+      'market index', 'benchmark', 'market cap', 'weighted average'
+    ],
+    weight: 1.0
+  },
+  ETFS: {
+    keywords: [
+      'etf', 'etfs', 'exchange traded fund', 'spdr', 'ishares', 'vanguard',
+      'invesco', 'ark', 'qqq', 'spy', 'dia', 'vti', 'voo', 'sector etf',
+      'bond etf', 'commodity etf', 'international etf', 'dividend etf'
+    ],
+    weight: 1.0
+  },
+  CRYPTO: {
+    keywords: [
+      'bitcoin', 'btc', 'ethereum', 'eth', 'cryptocurrency', 'crypto',
+      'altcoin', 'altcoins', 'defi', 'nft', 'blockchain', 'digital currency',
+      'binance', 'coinbase', 'crypto trading', 'crypto market', 'crypto news'
     ],
     weight: 0.8
   },
-  DEFI: {
+  ECONOMICS: {
     keywords: [
-      'defi', 'decentralized finance', 'yield farming', 'liquidity pool',
-      'uniswap', 'sushiswap', 'pancakeswap', 'aave', 'compound', 'makerdao',
-      'curve', 'balancer', 'synthetix', 'yearn', 'harvest', 'lending',
-      'borrowing', 'staking', 'governance token', 'dao', 'dex', 'amm'
+      'gdp', 'inflation', 'unemployment', 'federal reserve', 'fed', 'interest rates',
+      'monetary policy', 'fiscal policy', 'economic growth', 'recession',
+      'economic data', 'consumer price index', 'cpi', 'ppi', 'retail sales',
+      'manufacturing', 'employment', 'wage growth', 'productivity'
     ],
     weight: 1.0
   },
-  NFT: {
+  MARKETS: {
     keywords: [
-      'nft', 'non-fungible token', 'nfts', 'opensea', 'rarible', 'foundation',
-      'digital art', 'collectible', 'metaverse', 'virtual world', 'avatar',
-      'pixel art', 'crypto art', 'blockchain art', 'mint', 'minting'
+      'market', 'markets', 'trading', 'investing', 'investment', 'portfolio',
+      'asset allocation', 'market analysis', 'market outlook', 'bull market',
+      'bear market', 'volatility', 'liquidity', 'market sentiment'
     ],
-    weight: 1.0
+    weight: 0.7
   },
-  MACRO: {
+  TECHNOLOGY: {
     keywords: [
-      'regulation', 'regulatory', 'sec', 'cftc', 'federal reserve', 'fed',
-      'inflation', 'interest rates', 'monetary policy', 'economic', 'economy',
-      'institutional', 'adoption', 'corporate', 'treasury', 'government',
-      'policy', 'legal', 'compliance', 'tax', 'taxation', 'audit'
-    ],
-    weight: 0.9
-  },
-  WEB3: {
-    keywords: [
-      'web3', 'web 3', 'dapp', 'dapps', 'blockchain', 'distributed',
-      'peer-to-peer', 'p2p', 'consensus', 'node', 'validator', 'miner',
-      'hash', 'cryptography', 'private key', 'public key', 'wallet',
-      'transaction', 'block', 'chain', 'immutable', 'transparent'
+      'technology', 'tech', 'artificial intelligence', 'ai', 'machine learning',
+      'cloud computing', 'software', 'hardware', 'semiconductor', 'chip',
+      'cybersecurity', 'fintech', 'digital transformation', 'innovation'
     ],
     weight: 0.8
   },
-  GAMING: {
+  ENERGY: {
     keywords: [
-      'gaming', 'game', 'play-to-earn', 'p2e', 'nft game', 'crypto game',
-      'blockchain game', 'axie infinity', 'sandbox', 'decentraland', 'gaming nft'
+      'energy', 'oil', 'gas', 'renewable energy', 'solar', 'wind', 'nuclear',
+      'coal', 'electricity', 'power', 'utilities', 'energy sector',
+      'clean energy', 'green energy', 'fossil fuels'
     ],
     weight: 1.0
   },
-  METAVERSE: {
+  HEALTHCARE: {
     keywords: [
-      'metaverse', 'virtual reality', 'vr', 'augmented reality', 'ar',
-      'virtual world', 'digital world', 'virtual land', 'virtual property'
+      'healthcare', 'pharmaceutical', 'biotech', 'medical', 'drug', 'medicine',
+      'fda', 'clinical trial', 'health insurance', 'medical device',
+      'healthcare sector', 'biotechnology', 'pharma'
+    ],
+    weight: 1.0
+  },
+  FINANCIAL_SERVICES: {
+    keywords: [
+      'banking', 'bank', 'financial services', 'insurance', 'credit', 'loan',
+      'mortgage', 'investment banking', 'wealth management', 'asset management',
+      'hedge fund', 'private equity', 'venture capital', 'fintech'
+    ],
+    weight: 1.0
+  },
+  REAL_ESTATE: {
+    keywords: [
+      'real estate', 'property', 'housing', 'mortgage', 'reit', 'commercial real estate',
+      'residential real estate', 'real estate investment', 'property market',
+      'construction', 'home sales', 'rental market'
+    ],
+    weight: 1.0
+  },
+  CONSUMER_GOODS: {
+    keywords: [
+      'consumer goods', 'retail', 'consumer spending', 'retail sales',
+      'consumer staples', 'consumer discretionary', 'brand', 'retailer',
+      'e-commerce', 'online shopping', 'consumer confidence'
+    ],
+    weight: 1.0
+  },
+  INDUSTRIALS: {
+    keywords: [
+      'industrial', 'manufacturing', 'aerospace', 'defense', 'transportation',
+      'logistics', 'infrastructure', 'construction', 'machinery', 'equipment',
+      'industrial sector', 'supply chain', 'automotive'
     ],
     weight: 1.0
   }
@@ -84,26 +151,38 @@ const CATEGORY_KEYWORDS = {
 
 // Special patterns that override category detection
 const SPECIAL_PATTERNS = {
-  regulation: {
+  stock_specific: {
     patterns: [
-      /regulation/i, /regulatory/i, /sec/i, /cftc/i, /government/i,
-      /policy/i, /legal/i, /compliance/i, /law/i, /bill/i, /act/i
+      /apple|aapl/i, /microsoft|msft/i, /google|googl/i, /amazon|amzn/i,
+      /tesla|tsla/i, /meta|fb/i, /netflix|nflx/i, /nvidia|nvda/i,
+      /nasdaq|nyse|dow jones|s&p 500/i
     ],
-    category: 'MACRO',
+    category: 'STOCKS',
     weight: 2.0
   },
-  ethereum_specific: {
+  crypto_specific: {
     patterns: [
-      /ethereum/i, /eth/i, /ether/i, /smart contract/i, /defi/i, /nft/i
+      /bitcoin|btc/i, /ethereum|eth/i, /cryptocurrency|crypto/i,
+      /blockchain|defi|nft/i, /binance|coinbase/i
     ],
-    category: 'ALTCOINS',
+    category: 'CRYPTO',
     weight: 1.5
   },
-  bitcoin_specific: {
+  economic_indicators: {
     patterns: [
-      /bitcoin/i, /btc/i, /satoshi/i, /halving/i, /mining/i
+      /gdp|inflation|unemployment|federal reserve|fed/i,
+      /interest rates|monetary policy|fiscal policy/i,
+      /consumer price index|cpi|ppi|retail sales/i
     ],
-    category: 'BITCOIN',
+    category: 'ECONOMICS',
+    weight: 2.0
+  },
+  market_analysis: {
+    patterns: [
+      /market analysis|market outlook|bull market|bear market/i,
+      /volatility|liquidity|market sentiment|trading/i
+    ],
+    category: 'MARKETS',
     weight: 1.5
   }
 }
@@ -162,7 +241,7 @@ export function detectArticleCategories(
   categoryScores.sort((a, b) => b.score - a.score)
   
   // Determine primary and secondary categories
-  const primary = categoryScores.length > 0 ? categoryScores[0].category : 'ALTCOINS'
+  const primary = categoryScores.length > 0 ? categoryScores[0].category : 'MARKETS'
   const secondary = categoryScores.slice(1, 3).map(cs => cs.category)
   
   // Calculate confidence based on score distribution
@@ -180,14 +259,22 @@ export function detectArticleCategories(
 // Helper function to get category display name
 export function getCategoryDisplayName(category: string): string {
   const displayNames: Record<string, string> = {
-    BITCOIN: 'Bitcoin',
-    ALTCOINS: 'Altcoins',
-    DEFI: 'DeFi',
-    NFT: 'NFT',
-    MACRO: 'Macro',
-    WEB3: 'Web3',
-    GAMING: 'Gaming',
-    METAVERSE: 'Metaverse'
+    STOCKS: 'Stocks',
+    COMMODITIES: 'Commodities',
+    FOREX: 'Forex',
+    BONDS: 'Bonds',
+    INDICES: 'Indices',
+    ETFS: 'ETFs',
+    CRYPTO: 'Crypto',
+    ECONOMICS: 'Economics',
+    MARKETS: 'Markets',
+    TECHNOLOGY: 'Technology',
+    ENERGY: 'Energy',
+    HEALTHCARE: 'Healthcare',
+    FINANCIAL_SERVICES: 'Financial Services',
+    REAL_ESTATE: 'Real Estate',
+    CONSUMER_GOODS: 'Consumer Goods',
+    INDUSTRIALS: 'Industrials'
   }
   
   return displayNames[category.toUpperCase()] || category.toUpperCase()
@@ -196,14 +283,22 @@ export function getCategoryDisplayName(category: string): string {
 // Helper function to get category color
 export function getCategoryColor(category: string): string {
   const colors: Record<string, string> = {
-    BITCOIN: 'bg-orange-500',
-    ALTCOINS: 'bg-purple-500',
-    DEFI: 'bg-green-500',
-    NFT: 'bg-pink-500',
-    MACRO: 'bg-gray-500',
-    WEB3: 'bg-indigo-500',
-    GAMING: 'bg-yellow-500',
-    METAVERSE: 'bg-cyan-500'
+    STOCKS: 'bg-blue-500',
+    COMMODITIES: 'bg-yellow-500',
+    FOREX: 'bg-green-500',
+    BONDS: 'bg-purple-500',
+    INDICES: 'bg-indigo-500',
+    ETFS: 'bg-cyan-500',
+    CRYPTO: 'bg-orange-500',
+    ECONOMICS: 'bg-gray-500',
+    MARKETS: 'bg-slate-500',
+    TECHNOLOGY: 'bg-pink-500',
+    ENERGY: 'bg-red-500',
+    HEALTHCARE: 'bg-emerald-500',
+    FINANCIAL_SERVICES: 'bg-amber-500',
+    REAL_ESTATE: 'bg-teal-500',
+    CONSUMER_GOODS: 'bg-rose-500',
+    INDUSTRIALS: 'bg-violet-500'
   }
   
   return colors[category.toUpperCase()] || 'bg-gray-500'

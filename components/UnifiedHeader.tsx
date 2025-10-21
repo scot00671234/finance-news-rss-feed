@@ -34,8 +34,8 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
   const getPlaceholderText = () => {
     if (searchPlaceholder) return searchPlaceholder
     return pathname === '/charts' 
-      ? 'Search cryptocurrencies...' 
-      : 'Search crypto news, analysis, and market insights...'
+      ? 'Search stocks, indices, commodities, forex...' 
+      : 'Search finance news, market analysis, and economic insights...'
   }
 
   const isActive = (path: string) => {
@@ -47,7 +47,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
     {
       href: '/charts',
       label: 'Charts',
-      description: 'Real-time crypto charts'
+      description: 'Real-time financial markets data'
     },
     {
       href: '/fear-greed',
@@ -60,12 +60,12 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
     {
       href: '/brokers/axiom',
       label: 'Axiom',
-      description: 'Trade meme coins'
+      description: 'Advanced trading platform'
     },
     {
       href: '/brokers/coinbase',
       label: 'Coinbase',
-      description: 'Platform where you can trade crypto'
+      description: 'Digital asset trading platform'
     }
   ]
 

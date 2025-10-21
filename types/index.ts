@@ -46,6 +46,60 @@ export interface CryptoPrice {
   }
 }
 
+// Finance types (re-exported from finance-api for consistency)
+export interface StockPrice {
+  id: string
+  symbol: string
+  name: string
+  price: number
+  change: number
+  changePercent: number
+  volume: number
+  marketCap: number
+  high: number
+  low: number
+  open: number
+  previousClose: number
+  exchange: string
+  sector?: string
+  industry?: string
+}
+
+export interface CommodityPrice {
+  id: string
+  symbol: string
+  name: string
+  price: number
+  change: number
+  changePercent: number
+  unit: string
+  exchange: string
+}
+
+export interface ForexPrice {
+  id: string
+  symbol: string
+  name: string
+  price: number
+  change: number
+  changePercent: number
+  baseCurrency: string
+  quoteCurrency: string
+}
+
+export interface IndexPrice {
+  id: string
+  symbol: string
+  name: string
+  price: number
+  change: number
+  changePercent: number
+  points: number
+  exchange: string
+}
+
+export type FinancePrice = StockPrice | CommodityPrice | ForexPrice | IndexPrice
+
 export interface NewsSource {
   id: string
   name: string

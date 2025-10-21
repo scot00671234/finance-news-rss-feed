@@ -5,18 +5,24 @@ import { useSearchParams } from 'next/navigation'
 import NewsFeed from '@/components/NewsFeed'
 import CategoryFilter from '@/components/CategoryFilter'
 import Footer from '@/components/Footer'
-import { Article, CryptoPrice } from '@/types'
+import { Article } from '@/types'
+import { FinancePrice } from '@/lib/finance-api'
 
 export default function Home() {
   const searchParams = useSearchParams()
   const [allArticles, setAllArticles] = useState<Article[]>([]) // Store all articles
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([]) // Display filtered articles
-  const [cryptoPrices, setCryptoPrices] = useState<CryptoPrice[]>([])
+  const [financePrices, setFinancePrices] = useState<FinancePrice[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [loading, setLoading] = useState(true)
   const [searching, setSearching] = useState(false)
-  const [categoryCounts, setCategoryCounts] = useState({ all: 0, bitcoin: 0, altcoins: 0, defi: 0, macro: 0 })
+  const [categoryCounts, setCategoryCounts] = useState({ 
+    all: 0, stocks: 0, commodities: 0, forex: 0, bonds: 0, indices: 0, 
+    etfs: 0, crypto: 0, economics: 0, markets: 0, technology: 0, 
+    energy: 0, healthcare: 0, financial_services: 0, real_estate: 0, 
+    consumer_goods: 0, industrials: 0 
+  })
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
@@ -32,7 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchNews(true)
-    fetchCryptoPrices()
+    fetchFinancePrices()
     fetchCategoryCounts()
   }, [])
 
@@ -128,20 +134,30 @@ export default function Home() {
     }
   }
 
-  const fetchCryptoPrices = async () => {
+  const fetchFinancePrices = async () => {
     try {
-      const response = await fetch('/api/crypto-prices')
+      const response = await fetch('/api/finance-ticker')
       const data = await response.json()
-      setCryptoPrices(data)
+      setFinancePrices(data)
     } catch (error) {
-      console.error('Error fetching crypto prices:', error)
+      console.error('Error fetching finance prices:', error)
     }
   }
 
   const fetchCategoryCounts = async () => {
     try {
-      const categories = ['all', 'bitcoin', 'altcoins', 'defi', 'macro']
-      const counts = { all: 0, bitcoin: 0, altcoins: 0, defi: 0, macro: 0 }
+      const categories = [
+        'all', 'stocks', 'commodities', 'forex', 'bonds', 'indices', 
+        'etfs', 'crypto', 'economics', 'markets', 'technology', 
+        'energy', 'healthcare', 'financial_services', 'real_estate', 
+        'consumer_goods', 'industrials'
+      ]
+      const counts = { 
+        all: 0, stocks: 0, commodities: 0, forex: 0, bonds: 0, indices: 0, 
+        etfs: 0, crypto: 0, economics: 0, markets: 0, technology: 0, 
+        energy: 0, healthcare: 0, financial_services: 0, real_estate: 0, 
+        consumer_goods: 0, industrials: 0 
+      }
       
       for (const category of categories) {
         const response = await fetch(`/api/news?category=${category}`)
@@ -170,10 +186,22 @@ export default function Home() {
 
   const categories = [
     { id: 'all', name: 'All News', count: categoryCounts.all },
-    { id: 'bitcoin', name: 'Bitcoin', count: categoryCounts.bitcoin },
-    { id: 'altcoins', name: 'Altcoins', count: categoryCounts.altcoins },
-    { id: 'defi', name: 'DeFi', count: categoryCounts.defi },
-    { id: 'macro', name: 'Macro', count: categoryCounts.macro },
+    { id: 'stocks', name: 'Stocks', count: categoryCounts.stocks },
+    { id: 'commodities', name: 'Commodities', count: categoryCounts.commodities },
+    { id: 'forex', name: 'Forex', count: categoryCounts.forex },
+    { id: 'bonds', name: 'Bonds', count: categoryCounts.bonds },
+    { id: 'indices', name: 'Indices', count: categoryCounts.indices },
+    { id: 'etfs', name: 'ETFs', count: categoryCounts.etfs },
+    { id: 'crypto', name: 'Crypto', count: categoryCounts.crypto },
+    { id: 'economics', name: 'Economics', count: categoryCounts.economics },
+    { id: 'markets', name: 'Markets', count: categoryCounts.markets },
+    { id: 'technology', name: 'Technology', count: categoryCounts.technology },
+    { id: 'energy', name: 'Energy', count: categoryCounts.energy },
+    { id: 'healthcare', name: 'Healthcare', count: categoryCounts.healthcare },
+    { id: 'financial_services', name: 'Financial Services', count: categoryCounts.financial_services },
+    { id: 'real_estate', name: 'Real Estate', count: categoryCounts.real_estate },
+    { id: 'consumer_goods', name: 'Consumer Goods', count: categoryCounts.consumer_goods },
+    { id: 'industrials', name: 'Industrials', count: categoryCounts.industrials },
   ]
 
   return (
