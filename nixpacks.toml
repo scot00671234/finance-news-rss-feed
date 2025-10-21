@@ -8,11 +8,13 @@ NPM_CONFIG_AUDIT = "false"
 NPM_CONFIG_FUND = "false"
 NPM_CONFIG_PROGRESS = "false"
 NEXT_TELEMETRY_DISABLED = "1"
+# Allow esbuild to install platform-specific binaries
+NPM_CONFIG_OPTIONAL = "true"
 
 [phases.install]
 cmds = [
-  # Reduce disk usage: skip optional deps, disable progress logs, and clean cache
-  "npm ci --omit=dev --omit=optional --no-audit --no-fund --no-progress --legacy-peer-deps",
+  # Reduce disk usage: disable progress logs and clean cache (allow optional deps for esbuild)
+  "npm ci --omit=dev --no-audit --no-fund --no-progress --legacy-peer-deps",
   "npm cache clean --force"
 ]
 
