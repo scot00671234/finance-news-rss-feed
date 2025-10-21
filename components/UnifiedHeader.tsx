@@ -78,14 +78,14 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
               <Image 
                 src="/logo.svg" 
-                alt="Coin Feedly Logo" 
+                alt="Barclayne Logo" 
                 width={40} 
                 height={40}
                 className="object-contain"
               />
             </div>
             <span className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-              Coin Feedly
+              Barclayne
             </span>
           </Link>
 

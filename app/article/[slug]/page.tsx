@@ -595,7 +595,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 p-8">
                   <div className="mb-8">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                      Latest from Coin Feedly
+                      Latest from Barclayne
                     </h2>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       Fresh articles across all categories

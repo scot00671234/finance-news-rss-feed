@@ -14,13 +14,13 @@ export default function Footer() {
               <div className="w-8 h-8 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <Image 
                   src="/logo.svg" 
-                  alt="Coin Feedly Logo" 
+                  alt="Barclayne Logo" 
                   width={32} 
                   height={32}
                   className="object-contain"
                 />
               </div>
-              <span className="text-xl font-bold text-white">Coin Feedly</span>
+              <span className="text-xl font-bold text-white">Barclayne</span>
             </Link>
             <p className="text-slate-400 text-sm max-w-xs">
               Your trusted source for cryptocurrency news, market analysis, and real-time price updates.
@@ -33,7 +33,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg">About</h3>
             <div className="space-y-2">
               <p className="text-slate-400 text-sm">
-                Coin Feedly aggregates the latest cryptocurrency news from trusted sources, 
+                Barclayne aggregates the latest financial market news from trusted sources, 
                 providing real-time market data and comprehensive analysis.
               </p>
               <div className="flex items-center space-x-2 text-slate-400 text-sm">
@@ -79,7 +79,7 @@ export default function Footer() {
         <div className="border-t border-slate-800/50 dark:border-slate-800/50 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm">
-              © 2024 Coin Feedly. All rights reserved.
+              © 2024 Barclayne. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 text-slate-400 text-sm">
               <span>Powered by Real-time APIs</span>

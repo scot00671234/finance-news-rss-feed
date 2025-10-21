@@ -1,4 +1,4 @@
-# Coin Feedly - Crypto News RSS Feed
+# Barclayne - Financial Markets Intelligence Platform
 
 A comprehensive cryptocurrency news aggregation platform built with Next.js, TypeScript, and PostgreSQL. Stay updated with the latest crypto news, real-time prices, and expert analysis.
 

@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { ArrowLeft, Shield, AlertTriangle, FileText, ExternalLink } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Legal Disclaimer | Coin Feedly',
-  description: 'Legal disclaimer and terms of use for Coin Feedly. Important information about financial responsibility and data accuracy.',
+  title: 'Legal Disclaimer | Barclayne',
+  description: 'Legal disclaimer and terms of use for Barclayne. Important information about financial responsibility and data accuracy.',
   robots: 'index, follow'
 }
 
