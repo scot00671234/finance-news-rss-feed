@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { X, TrendingUp, TrendingDown, BarChart3, Globe, Zap, DollarSign } from 'lucide-react'
 import { FinancePrice, formatPrice, formatChange, formatChangePercent, formatVolume, formatMarketCap } from '@/lib/finance-api'
 import TradingViewWidget from './TradingViewWidget'
@@ -12,8 +12,6 @@ interface FinanceChartModalProps {
 }
 
 export default function FinanceChartModal({ isOpen, onClose, instrument }: FinanceChartModalProps) {
-  const [timeframe, setTimeframe] = useState<'1' | '3' | '5' | '15' | '30' | '60' | '120' | '180' | '240' | 'D' | 'W'>('D')
-  const [chartStyle, setChartStyle] = useState<'0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'>('1')
 
   if (!isOpen || !instrument) return null
 
@@ -118,7 +116,7 @@ export default function FinanceChartModal({ isOpen, onClose, instrument }: Finan
       
       {/* Modal */}
       <div className="relative min-h-screen flex items-center justify-center p-4">
-        <div className="relative bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
+        <div className="relative bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
             <div className="flex items-center space-x-4">
@@ -180,68 +178,23 @@ export default function FinanceChartModal({ isOpen, onClose, instrument }: Finan
             </div>
           </div>
 
-          {/* Chart Controls */}
+          {/* TradingView Symbol Info */}
           <div className="p-6 border-b border-slate-200 dark:border-slate-700">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center space-x-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Timeframe
-                  </label>
-                  <select
-                    value={timeframe}
-                    onChange={(e) => setTimeframe(e.target.value as any)}
-                    className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                  >
-                    <option value="1">1m</option>
-                    <option value="3">3m</option>
-                    <option value="5">5m</option>
-                    <option value="15">15m</option>
-                    <option value="30">30m</option>
-                    <option value="60">1h</option>
-                    <option value="120">2h</option>
-                    <option value="180">3h</option>
-                    <option value="240">4h</option>
-                    <option value="D">1D</option>
-                    <option value="W">1W</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Chart Style
-                  </label>
-                  <select
-                    value={chartStyle}
-                    onChange={(e) => setChartStyle(e.target.value as any)}
-                    className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                  >
-                    <option value="0">Bars</option>
-                    <option value="1">Candles</option>
-                    <option value="2">Hollow Candles</option>
-                    <option value="3">Line</option>
-                    <option value="4">Area</option>
-                    <option value="5">Renko</option>
-                    <option value="6">Line Break</option>
-                    <option value="7">Kagi</option>
-                    <option value="8">Point & Figure</option>
-                    <option value="9">Heikin Ashi</option>
-                  </select>
-                </div>
-              </div>
+            <div className="text-center">
               <div className="text-sm text-slate-500 dark:text-slate-400">
-                TradingView Symbol: <span className="font-mono font-semibold">{tradingViewSymbol}</span>
+                TradingView Symbol: <span className="font-mono font-semibold text-slate-900 dark:text-white">{tradingViewSymbol}</span>
               </div>
             </div>
           </div>
 
           {/* TradingView Chart */}
           <div className="p-6">
-            <div className="h-96 w-full">
+            <div className="h-[600px] w-full">
               <TradingViewWidget
                 symbol={tradingViewSymbol}
-                interval={timeframe}
+                interval="D"
                 theme="light"
-                style={chartStyle}
+                style="1"
                 autosize={true}
                 hide_top_toolbar={false}
                 save_image={true}

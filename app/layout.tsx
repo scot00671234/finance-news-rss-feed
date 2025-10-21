@@ -14,7 +14,10 @@ export const metadata: Metadata = {
   keywords: 'Barclayne, financial markets, market intelligence, stock analysis, commodity trading, forex news, crypto markets, financial data, market research, investment insights',
   authors: [{ name: 'Barclayne' }],
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' }
+    ],
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
@@ -44,6 +47,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-adsense-account" content="ca-pub-4669482504741834" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4669482504741834"
      crossOrigin="anonymous"></script>
       </head>

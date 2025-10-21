@@ -82,6 +82,11 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
                 width={40} 
                 height={40}
                 className="object-contain"
+                onError={(e) => {
+                  console.error('Logo failed to load:', e);
+                  // Fallback to text if image fails
+                  e.currentTarget.style.display = 'none';
+                }}
               />
             </div>
             <span className="text-xl font-light tracking-wide text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
