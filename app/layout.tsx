@@ -48,7 +48,6 @@ export default function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-4669482504741834" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4669482504741834"
      crossOrigin="anonymous"></script>

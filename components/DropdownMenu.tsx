@@ -19,7 +19,30 @@ interface DropdownMenuProps {
 
 export default function DropdownMenu({ trigger, items, className = '' }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [dropdownPosition, setDropdownPosition] = useState<'left' | 'right'>('left')
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  // Calculate dropdown position based on available space
+  useEffect(() => {
+    if (isOpen && triggerRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
+      const dropdownWidth = 224 // w-56 = 14rem = 224px
+      
+      // Check if dropdown would overflow on the right
+      const wouldOverflowRight = triggerRect.right + dropdownWidth > viewportWidth
+      
+      // Check if dropdown would overflow on the left
+      const wouldOverflowLeft = triggerRect.left - dropdownWidth < 0
+      
+      if (wouldOverflowRight && !wouldOverflowLeft) {
+        setDropdownPosition('right')
+      } else {
+        setDropdownPosition('left')
+      }
+    }
+  }, [isOpen])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -29,15 +52,39 @@ export default function DropdownMenu({ trigger, items, className = '' }: Dropdow
       }
     }
 
+    const handleResize = () => {
+      if (isOpen) {
+        // Recalculate position on window resize
+        if (triggerRef.current) {
+          const triggerRect = triggerRef.current.getBoundingClientRect()
+          const viewportWidth = window.innerWidth
+          const dropdownWidth = 224
+          
+          const wouldOverflowRight = triggerRect.right + dropdownWidth > viewportWidth
+          const wouldOverflowLeft = triggerRect.left - dropdownWidth < 0
+          
+          if (wouldOverflowRight && !wouldOverflowLeft) {
+            setDropdownPosition('right')
+          } else {
+            setDropdownPosition('left')
+          }
+        }
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside)
+    window.addEventListener('resize', handleResize)
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
+      window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [isOpen])
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       <button
+        ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-1 px-3 py-2 rounded-md font-medium text-sm transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
       >
@@ -46,7 +93,9 @@ export default function DropdownMenu({ trigger, items, className = '' }: Dropdow
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200/50 dark:border-slate-700/50 py-1 z-50 backdrop-blur-sm">
+        <div className={`absolute top-full mt-1 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200/50 dark:border-slate-700/50 py-1 z-50 backdrop-blur-sm ${
+          dropdownPosition === 'right' ? 'right-0' : 'left-0'
+        }`}>
           {items.map((item, index) => (
             <Link
               key={index}

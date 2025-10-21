@@ -18,6 +18,12 @@ export default function Footer() {
                   width={32} 
                   height={32}
                   className="object-contain"
+                  priority
+                  onError={(e) => {
+                    console.error('Footer logo failed to load:', e);
+                    // Fallback to text if image fails
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
               <span className="text-xl font-bold text-white">Barclayne</span>

@@ -72,7 +72,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-slate-900 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
@@ -82,6 +82,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
                 width={40} 
                 height={40}
                 className="object-contain"
+                priority
                 onError={(e) => {
                   console.error('Logo failed to load:', e);
                   // Fallback to text if image fails
@@ -112,7 +113,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             <Link
               href="/"
               className={`px-3 py-2 rounded-md font-medium text-sm transition-all duration-200 focus:outline-none ${
@@ -162,7 +163,7 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-200/50 dark:border-slate-800/50 py-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl">
+          <div className="md:hidden border-t border-slate-200/50 dark:border-slate-800/50 py-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
             <div className="space-y-2">
               {/* Mobile Navigation Menu */}
               <div className="px-4 py-2">
