@@ -13,14 +13,14 @@ export default function Footer() {
               <div className="w-8 h-8 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <radialGradient id="goldGradientFooter" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" style={{stopColor:'#FFD700', stopOpacity:1}} />
-                      <stop offset="70%" style={{stopColor:'#FFA500', stopOpacity:1}} />
-                      <stop offset="100%" style={{stopColor:'#B8860B', stopOpacity:1}} />
+                    <radialGradient id="blueGradientFooter" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" style={{stopColor:'#87CEEB', stopOpacity:1}} />
+                      <stop offset="70%" style={{stopColor:'#4682B4', stopOpacity:1}} />
+                      <stop offset="100%" style={{stopColor:'#191970', stopOpacity:1}} />
                     </radialGradient>
                   </defs>
-                  <circle cx="14" cy="20" r="12" fill="url(#goldGradientFooter)" />
-                  <circle cx="26" cy="20" r="12" fill="url(#goldGradientFooter)" />
+                  <circle cx="14" cy="20" r="12" fill="url(#blueGradientFooter)" />
+                  <circle cx="26" cy="20" r="12" fill="url(#blueGradientFooter)" />
                 </svg>
               </div>
               <span className="text-xl font-bold text-white">Barclayne</span>

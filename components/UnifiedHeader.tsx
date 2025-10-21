@@ -77,14 +77,14 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" style={{stopColor:'#FFD700', stopOpacity:1}} />
-                    <stop offset="70%" style={{stopColor:'#FFA500', stopOpacity:1}} />
-                    <stop offset="100%" style={{stopColor:'#B8860B', stopOpacity:1}} />
+                  <radialGradient id="blueGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style={{stopColor:'#87CEEB', stopOpacity:1}} />
+                    <stop offset="70%" style={{stopColor:'#4682B4', stopOpacity:1}} />
+                    <stop offset="100%" style={{stopColor:'#191970', stopOpacity:1}} />
                   </radialGradient>
                 </defs>
-                <circle cx="14" cy="20" r="12" fill="url(#goldGradient)" />
-                <circle cx="26" cy="20" r="12" fill="url(#goldGradient)" />
+                <circle cx="14" cy="20" r="12" fill="url(#blueGradient)" />
+                <circle cx="26" cy="20" r="12" fill="url(#blueGradient)" />
               </svg>
             </div>
             <span className="text-xl font-light tracking-wide text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
