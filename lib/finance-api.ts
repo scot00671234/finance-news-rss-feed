@@ -26,6 +26,8 @@ export interface CommodityPrice {
   changePercent: number
   unit: string
   exchange: string
+  volume?: number
+  marketCap?: number
 }
 
 export interface ForexPrice {
@@ -37,6 +39,8 @@ export interface ForexPrice {
   changePercent: number
   baseCurrency: string
   quoteCurrency: string
+  volume?: number
+  marketCap?: number
 }
 
 export interface IndexPrice {
@@ -48,6 +52,8 @@ export interface IndexPrice {
   changePercent: number
   points: number
   exchange: string
+  volume?: number
+  marketCap?: number
 }
 
 export type FinancePrice = StockPrice | CommodityPrice | ForexPrice | IndexPrice

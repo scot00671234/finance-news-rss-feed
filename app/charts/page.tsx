@@ -236,7 +236,7 @@ export default function ChartsPage() {
                     <button
                       onClick={() => {
                         setError(null)
-                        fetchCryptos()
+                        fetchFinanceData()
                       }}
                       className="bg-red-100 dark:bg-red-800 px-3 py-2 rounded-md text-sm font-medium text-red-800 dark:text-red-200 hover:bg-red-200 dark:hover:bg-red-700 transition-colors"
                     >
@@ -342,13 +342,13 @@ export default function ChartsPage() {
                             <div>
                               <div className="text-slate-500 dark:text-slate-400 mb-1">Volume</div>
                               <div className="font-medium text-slate-900 dark:text-white">
-                                {formatVolume(item.volume)}
+                                {formatVolume(item.volume || 0)}
                               </div>
                             </div>
                             <div>
                               <div className="text-slate-500 dark:text-slate-400 mb-1">Market Cap</div>
                               <div className="font-medium text-slate-900 dark:text-white">
-                                {formatMarketCap(item.marketCap)}
+                                {formatMarketCap(item.marketCap || 0)}
                               </div>
                             </div>
                           </div>
@@ -421,10 +421,10 @@ export default function ChartsPage() {
                               {formatChangePercent(item.changePercent)}
                             </td>
                             <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">
-                              {formatVolume(item.volume)}
+                              {formatVolume(item.volume || 0)}
                             </td>
                             <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">
-                              {formatMarketCap(item.marketCap)}
+                              {formatMarketCap(item.marketCap || 0)}
                             </td>
                           </tr>
                         )
