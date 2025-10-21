@@ -5,10 +5,11 @@ import { financeManager } from '@/lib/finance-manager'
 export const dynamic = 'force-dynamic'
 
 export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url)
+  const type = searchParams.get('type') || 'all'
+  const search = searchParams.get('search') || ''
+  
   try {
-    const { searchParams } = new URL(request.url)
-    const type = searchParams.get('type') || 'all'
-    const search = searchParams.get('search') || ''
     
     console.log('📊 Fetching finance data:', { type, search })
     
