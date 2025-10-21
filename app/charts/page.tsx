@@ -394,8 +394,7 @@ export default function ChartsPage() {
                             className="hover:bg-slate-100 dark:hover:bg-slate-700/30 cursor-pointer transition-colors"
                           >
                             <td className="px-4 py-4 whitespace-nowrap">
-                              <div className={`inline-flex items-center space-x-2 px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(itemType)}`}>
-                                {getTypeIcon(itemType)}
+                              <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(itemType)}`}>
                                 <span className="capitalize">{itemType}</span>
                               </div>
                             </td>
