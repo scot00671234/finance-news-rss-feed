@@ -136,8 +136,8 @@ export default function LegalPage() {
                         </div>
                       </div>
                     </div>
-                </div>
-              </section>
+                  </div>
+                </section>
 
                 {/* Data Accuracy */}
                 <section id="data-accuracy" className="mb-12">
@@ -170,135 +170,202 @@ export default function LegalPage() {
                       </div>
                     </div>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                      Third-Party Content
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
-                      Our platform aggregates content from various sources including news websites, APIs, and other third-party providers. We do not control or verify the accuracy of this third-party content and disclaim any responsibility for its accuracy or reliability.
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      Users should independently verify any information before making decisions based on it.
-                    </p>
+                    <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Eye className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
+                            Third-Party Content
+                          </h3>
+                          <p className="text-slate-700 dark:text-slate-300 mb-4">
+                            Our platform aggregates content from various sources including news websites, APIs, and other third-party providers. We do not control or verify the accuracy of this third-party content and disclaim any responsibility for its accuracy or reliability.
+                          </p>
+                          <p className="text-slate-700 dark:text-slate-300">
+                            Users should independently verify any information before making decisions based on it.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              {/* Broker & Platform Links */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  External Links & Brokers
-                </h2>
-                
-                <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-3">
-                    No Endorsement of Brokers or Platforms
-                  </h3>
-                  <p className="text-orange-800 dark:text-orange-200 mb-4">
-                    <strong>Coin Feedly does not endorse, recommend, or take responsibility for any brokers, exchanges, trading platforms, or financial services providers that may be linked to or mentioned on our platform.</strong>
-                  </p>
-                  <ul className="space-y-2 text-orange-800 dark:text-orange-200">
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>You are solely responsible for researching and evaluating any brokers or platforms before using their services</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>We are not liable for any losses, damages, or issues arising from your use of external platforms or services</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>You should verify the legitimacy, security, and regulatory compliance of any platform before depositing funds or trading</span>
-                    </li>
-                  </ul>
-                </div>
-              </section>
-
-              {/* Limitation of Liability */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  Limitation of Liability
-                </h2>
-                
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">
-                    No Liability for Financial Losses
-                  </h3>
-                  <p className="text-red-800 dark:text-red-200 mb-4">
-                    <strong>Coin Feedly shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages resulting from:</strong>
-                  </p>
-                  <ul className="space-y-2 text-red-800 dark:text-red-200">
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>Your use of or reliance on any information provided on our platform</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>Any financial decisions you make based on our content</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>Inaccuracies, errors, or omissions in our data or content</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>Your use of any external platforms or services linked from our site</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>Any interruption or cessation of our services</span>
-                    </li>
-                  </ul>
-                </div>
-              </section>
-
-              {/* General Terms */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  General Terms
-                </h2>
-                
-                <div className="space-y-4">
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                      Service Availability
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      Coin Feedly reserves the right to modify, suspend, or discontinue any part of our service at any time without notice. We do not guarantee uninterrupted access to our platform.
-                    </p>
+                {/* Broker & Platform Links */}
+                <section id="third-party" className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+                      <ExternalLink className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      External Links & Brokers
+                    </h2>
                   </div>
-
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                      Changes to Terms
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      We may update this legal disclaimer at any time. Continued use of our service after changes constitutes acceptance of the new terms.
-                    </p>
+                  
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <AlertTriangle className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-3">
+                          No Endorsement of Brokers or Platforms
+                        </h3>
+                        <p className="text-orange-800 dark:text-orange-200 mb-4">
+                          <strong>Barclayne does not endorse, recommend, or take responsibility for any brokers, exchanges, trading platforms, or financial services providers that may be linked to or mentioned on our platform.</strong>
+                        </p>
+                        <ul className="space-y-2 text-orange-800 dark:text-orange-200">
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>You are solely responsible for researching and evaluating any brokers or platforms before using their services</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>We are not liable for any losses, damages, or issues arising from your use of external platforms or services</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>You should verify the legitimacy, security, and regulatory compliance of any platform before depositing funds or trading</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
+                </section>
 
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                      Contact Information
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      If you have any questions about this legal disclaimer, please contact us through our website or support channels.
-                    </p>
+                {/* Limitation of Liability */}
+                <section id="liability" className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      Limitation of Liability
+                    </h2>
                   </div>
-                </div>
-              </section>
+                  
+                  <div className="bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">
+                          No Liability for Financial Losses
+                        </h3>
+                        <p className="text-red-800 dark:text-red-200 mb-4">
+                          <strong>Barclayne shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages resulting from:</strong>
+                        </p>
+                        <ul className="space-y-2 text-red-800 dark:text-red-200">
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>Your use of or reliance on any information provided on our platform</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>Any financial decisions you make based on our content</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>Inaccuracies, errors, or omissions in our data or content</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>Your use of any external platforms or services linked from our site</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></span>
+                            <span>Any interruption or cessation of our services</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
-              {/* Final Notice */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
-                  Final Notice
-                </h3>
-                <p className="text-blue-800 dark:text-blue-200">
-                  <strong>By using Coin Feedly, you acknowledge that you have read, understood, and agree to be bound by this legal disclaimer.</strong> If you do not agree with any part of these terms, please do not use our service.
-                </p>
-                <p className="text-blue-800 dark:text-blue-200 mt-3">
-                  Remember: Always do your own research and consult with qualified financial professionals before making any investment decisions.
-                </p>
+                {/* General Terms */}
+                <section id="modifications" className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+                      <FileText className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      General Terms
+                    </h2>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <AlertTriangle className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
+                            Service Availability
+                          </h3>
+                          <p className="text-slate-700 dark:text-slate-300">
+                            Barclayne reserves the right to modify, suspend, or discontinue any part of our service at any time without notice. We do not guarantee uninterrupted access to our platform.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <FileText className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
+                            Changes to Terms
+                          </h3>
+                          <p className="text-slate-700 dark:text-slate-300">
+                            We may update this legal disclaimer at any time. Continued use of our service after changes constitutes acceptance of the new terms.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
+                            Contact Information
+                          </h3>
+                          <p className="text-slate-700 dark:text-slate-300">
+                            If you have any questions about this legal disclaimer, please contact us through our website or support channels.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Final Notice */}
+                <section id="agreement" className="mb-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <AlertTriangle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                          Final Notice
+                        </h3>
+                        <p className="text-blue-800 dark:text-blue-200">
+                          <strong>By using Barclayne, you acknowledge that you have read, understood, and agree to be bound by this legal disclaimer.</strong> If you do not agree with any part of these terms, please do not use our service.
+                        </p>
+                        <p className="text-blue-800 dark:text-blue-200 mt-3">
+                          Remember: Always do your own research and consult with qualified financial professionals before making any investment decisions.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
           </div>
@@ -307,7 +374,3 @@ export default function LegalPage() {
     </div>
   )
 }
-
-
-
-

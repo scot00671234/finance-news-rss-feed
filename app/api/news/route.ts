@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { parseRSSFeed, extractImageUrl, extractImages } from '@/lib/rss-parser'
 import { detectArticleCategories } from '@/lib/category-detector'
-import { getRandomCryptoImage } from '@/lib/crypto-images'
+import { getFinanceFallbackImage } from '@/lib/crypto-images'
 
 // Generate slug from title
 function generateSlug(title: string): string {
@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
     const articles: any[] = allArticles.map((article, index) => ({
       ...article,
       slug: article.slug || `${generateSlug(article.title)}-${index}`,
-      imageUrl: article.imageUrl || getRandomCryptoImage(article.primaryCategory || 'bitcoin', article.title)
+      imageUrl: article.imageUrl || getFinanceFallbackImage(article.primaryCategory || 'bitcoin', article.title)
     }))
 
     return NextResponse.json(articles, {
@@ -166,7 +166,7 @@ export async function GET(request: NextRequest) {
     // Ensure all articles have images and slugs (add fallback if missing)
     const articlesWithImages = articles.map((article, index) => ({
       ...article,
-      imageUrl: article.imageUrl || getRandomCryptoImage(article.primaryCategory || 'bitcoin', article.title),
+      imageUrl: article.imageUrl || getFinanceFallbackImage(article.primaryCategory || 'bitcoin', article.title),
       slug: article.slug || `${generateSlug(article.title)}-${index}`
     }))
 

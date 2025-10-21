@@ -1,5 +1,5 @@
 // Enhanced image handling with multiple extraction strategies and fallbacks
-import { getRandomCryptoImage, getCryptoImageByIndex } from './crypto-images'
+import { getFinanceFallbackImage, getFinanceImageByIndex } from './crypto-images'
 
 export interface ImageInfo {
   url: string
@@ -266,7 +266,7 @@ function generateFallbackImages(category?: string, title?: string): ImageInfo[] 
   const images: ImageInfo[] = []
   
   if (category || title) {
-    const fallbackUrl = getRandomCryptoImage(category || 'default', title)
+    const fallbackUrl = getFinanceFallbackImage(category || 'default', title)
     images.push({
       url: fallbackUrl,
       alt: title || 'Crypto news image',
@@ -446,7 +446,7 @@ export function createResponsiveImageSet(images: ImageInfo[]): {
   const bestImage = getBestImage(images)
   if (!bestImage) {
     return {
-      src: getRandomCryptoImage('default'),
+      src: getFinanceFallbackImage('default'),
       alt: 'Crypto news image'
     }
   }

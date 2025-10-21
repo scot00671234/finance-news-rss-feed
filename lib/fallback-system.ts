@@ -1,5 +1,5 @@
 // Comprehensive fallback system for when article extraction fails
-import { getRandomCryptoImage } from './crypto-images'
+import { getFinanceFallbackImage } from './crypto-images'
 import { detectArticleCategories } from './category-detector'
 
 export interface FallbackContent {
@@ -252,7 +252,7 @@ function createUltimateFallback(url: string, rssItem?: any): FallbackContent {
     title,
     description: cleanDescription(description),
     content,
-    imageUrl: getRandomCryptoImage(category, title),
+    imageUrl: getFinanceFallbackImage(category, title),
     author: 'CoinFeedly',
     source: extractSourceFromURL(url),
     publishedAt: new Date(),
@@ -504,7 +504,7 @@ async function getFallbackImage(
   }
   
   // Fallback to category-based image
-  return getRandomCryptoImage(category, title)
+  return getFinanceFallbackImage(category, title)
 }
 
 async function extractImageFromURL(url: string): Promise<string | null> {

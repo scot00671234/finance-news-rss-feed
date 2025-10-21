@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { parseRSSFeed, extractImageUrl, extractImages } from '@/lib/rss-parser'
 import { detectArticleCategories } from '@/lib/category-detector'
-import { getRandomCryptoImage } from '@/lib/crypto-images'
+import { getFinanceFallbackImage } from '@/lib/crypto-images'
 
 // Generate slug from title
 function generateSlug(title: string): string {
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
                 url: item.link || '',
                 slug: uniqueSlug,
                 publishedAt: item.pubDate ? new Date(item.pubDate) : new Date(),
-                imageUrl: imageUrl || getRandomCryptoImage(detectedCategories.primary, item.title),
+                imageUrl: imageUrl || getFinanceFallbackImage(detectedCategories.primary, item.title),
                 primaryCategory: detectedCategories.primary.toUpperCase(),
                 sourceId: source.id
               },
