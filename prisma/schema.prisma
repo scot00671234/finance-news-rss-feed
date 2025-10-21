@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NewsSource {
+  id       String @id @default(cuid())
+  name     String @unique
+  url      String @unique
+  primaryCategory String
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+
+  @@map("news_sources")
+}
+
+model Article {
+  id            String @id @default(cuid())
+  title         String
+  description   String?
+  content       String?
+  url           String @unique
+  slug          String? @unique
+  publishedAt   DateTime
+  imageUrl      String?
+  primaryCategory String
+  sourceId      String
+  author        String?
+  readingTime   Int? // in minutes
+  viewCount     Int @default(0)
+  seoTitle      String?
+  seoDescription String?
+  keywords      String[]
+  featuredImage String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  source NewsSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  categories ArticleCategory[]
+
+  @@map("articles")
+}
+
+model Category {
+  id        String @id @default(cuid())
+  name      String @unique
+  slug      String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles ArticleCategory[]
+
+  @@map("categories")
+}
+
+model ArticleCategory {
+  id         String @id @default(cuid())
+  articleId  String
+  categoryId String
+  createdAt  DateTime @default(now())
+
+  article  Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, categoryId])
+  @@map("article_categories")
+}
+
+model CryptoPrice {
+  id        String @id @default(cuid())
+  symbol    String @unique
+  name      String
+  price     Float
+  change24h Float
+  volume24h Float?
+  marketCap Float?
+  updatedAt DateTime @updatedAt
+
+  @@map("crypto_prices")
+}
+
+model BlogPost {
+  id            String @id @default(cuid())
+  title         String
+  slug          String @unique
+  content       String
+  excerpt       String?
+  keywords      String[]
+  metaTitle     String?
+  metaDescription String?
+  featuredImage String?
+  author        String @default("Coin Feedly Team")
+  readingTime   Int? // in minutes
+  viewCount     Int @default(0)
+  publishedAt   DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  isPublished   Boolean @default(false)
+  priority      Int @default(0) // for SEO priority ordering
+
+  @@map("blog_posts")
+}
