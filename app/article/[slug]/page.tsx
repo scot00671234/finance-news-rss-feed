@@ -425,22 +425,22 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const description = article.seoDescription || article.description || 'Read the latest cryptocurrency news and analysis.'
 
   return {
-    title: `${title} | Coin Feedly`,
+    title: `${title} | Barclayne`,
     description,
     keywords: article.keywords ? article.keywords.join(', ') : '',
     openGraph: {
-      title: `${title} | Coin Feedly`,
+      title: `${title} | Barclayne`,
       description,
       type: 'article',
       publishedTime: new Date(article.publishedAt).toISOString(),
       modifiedTime: new Date(article.updatedAt).toISOString(),
       authors: article.author ? [article.author] : [article.source.name],
       images: article.featuredImage || article.imageUrl ? [article.featuredImage || article.imageUrl!] : [],
-      siteName: 'Coin Feedly',
+      siteName: 'Barclayne',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Coin Feedly`,
+      title: `${title} | Barclayne`,
       description,
       images: article.featuredImage || article.imageUrl ? [article.featuredImage || article.imageUrl!] : [],
     },
@@ -471,7 +471,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Coin Feedly',
+      name: 'Barclayne',
       logo: {
         '@type': 'ImageObject',
         url: 'https://coinfeedly.com/icon.svg'

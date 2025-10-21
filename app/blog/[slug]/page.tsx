@@ -73,11 +73,11 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const description = post.metaDescription || post.excerpt || 'Read the latest crypto news and Bitcoin updates.'
 
   return {
-    title: `${title} | Coin Feedly Blog`,
+    title: `${title} | Barclayne Blog`,
     description,
     keywords: post.keywords.join(', '),
     openGraph: {
-      title: `${title} | Coin Feedly Blog`,
+      title: `${title} | Barclayne Blog`,
       description,
       type: 'article',
       publishedTime: post.publishedAt.toISOString(),
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Coin Feedly Blog`,
+      title: `${title} | Barclayne Blog`,
       description,
       images: post.featuredImage ? [post.featuredImage] : [],
     },
@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Coin Feedly',
+      name: 'Barclayne',
       logo: {
         '@type': 'ImageObject',
         url: '/icon.svg'

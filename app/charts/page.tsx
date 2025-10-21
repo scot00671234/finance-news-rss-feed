@@ -5,6 +5,7 @@ import { FinancePrice, formatPrice, formatChange, formatChangePercent, formatVol
 import { ArrowUp, ArrowDown, TrendingUp, TrendingDown, BarChart3, DollarSign, Globe, Zap } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import Footer from '@/components/Footer'
+import FinanceChartModal from '@/components/FinanceChartModal'
 
 export default function ChartsPage() {
   const router = useRouter()
@@ -16,6 +17,8 @@ export default function ChartsPage() {
   const [sortBy, setSortBy] = useState<'price' | 'change' | 'volume' | 'marketCap'>('price')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
   const [tickerPrices, setTickerPrices] = useState<FinancePrice[]>([])
+  const [selectedInstrument, setSelectedInstrument] = useState<FinancePrice | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     fetchFinanceData()
@@ -72,8 +75,13 @@ export default function ChartsPage() {
   }
 
   const handleFinanceClick = (item: FinancePrice) => {
-    // For now, just show details in a modal or navigate to a detail page
-    console.log('Clicked finance item:', item)
+    setSelectedInstrument(item)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedInstrument(null)
   }
 
   const sortedFinanceData = [...financeData].sort((a, b) => {
@@ -442,6 +450,13 @@ export default function ChartsPage() {
           </div>
         </div>
       </div>
+      
+      {/* Finance Chart Modal */}
+      <FinanceChartModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        instrument={selectedInstrument}
+      />
       
       {/* Footer */}
       <Footer />

@@ -110,7 +110,7 @@ export function generateArticleSchema(article: any) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Coin Feedly',
+      name: 'Barclayne',
       logo: {
         '@type': 'ImageObject',
         url: 'https://coinfeedly.com/icon.svg'
