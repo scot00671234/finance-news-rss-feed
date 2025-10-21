@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -12,13 +11,12 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="w-8 h-8 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <Image 
+                <img 
                   src="/logo.svg" 
                   alt="Barclayne Logo" 
                   width={32} 
                   height={32}
                   className="object-contain"
-                  priority
                   onError={(e) => {
                     console.error('Footer logo failed to load:', e);
                     // Fallback to text if image fails

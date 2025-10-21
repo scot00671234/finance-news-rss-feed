@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Search, Moon, Sun, Menu, X, TrendingUp, BarChart3, Activity, Zap } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
@@ -76,13 +75,12 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              <Image 
+              <img 
                 src="/logo.svg" 
                 alt="Barclayne Logo" 
                 width={40} 
                 height={40}
                 className="object-contain"
-                priority
                 onError={(e) => {
                   console.error('Logo failed to load:', e);
                   // Fallback to text if image fails
