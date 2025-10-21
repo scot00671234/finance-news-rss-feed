@@ -240,11 +240,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             />
                           </div>
                         )}
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2">
+                        <div className="flex-1 min-w-0 overflow-hidden">
+                          <h4 className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2 leading-tight">
                             {relatedPost.title}
                           </h4>
-                          <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 truncate">
                             {formatDistanceToNow(new Date(relatedPost.publishedAt), { addSuffix: true })}
                           </p>
                         </div>

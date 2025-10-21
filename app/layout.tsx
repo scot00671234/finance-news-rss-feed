@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'Barclayne' }],
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/favicon.svg', type: 'image/svg+xml' }
+      { url: 'data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="goldGradient" cx="50%25" cy="50%25" r="50%25"><stop offset="0%25" style="stop-color:%23FFD700;stop-opacity:1" /><stop offset="70%25" style="stop-color:%23FFA500;stop-opacity:1" /><stop offset="100%25" style="stop-color:%23B8860B;stop-opacity:1" /></radialGradient></defs><circle cx="14" cy="20" r="12" fill="url(%23goldGradient)" /><circle cx="26" cy="20" r="12" fill="url(%23goldGradient)" /></svg>', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' }
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    shortcut: 'data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="goldGradient" cx="50%25" cy="50%25" r="50%25"><stop offset="0%25" style="stop-color:%23FFD700;stop-opacity:1" /><stop offset="70%25" style="stop-color:%23FFA500;stop-opacity:1" /><stop offset="100%25" style="stop-color:%23B8860B;stop-opacity:1" /></radialGradient></defs><circle cx="14" cy="20" r="12" fill="url(%23goldGradient)" /><circle cx="26" cy="20" r="12" fill="url(%23goldGradient)" /></svg>',
+    apple: 'data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="goldGradient" cx="50%25" cy="50%25" r="50%25"><stop offset="0%25" style="stop-color:%23FFD700;stop-opacity:1" /><stop offset="70%25" style="stop-color:%23FFA500;stop-opacity:1" /><stop offset="100%25" style="stop-color:%23B8860B;stop-opacity:1" /></radialGradient></defs><circle cx="14" cy="20" r="12" fill="url(%23goldGradient)" /><circle cx="26" cy="20" r="12" fill="url(%23goldGradient)" /></svg>',
   },
   openGraph: {
     title: 'Barclayne - Financial Markets Intelligence Platform',
@@ -47,9 +47,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-adsense-account" content="ca-pub-4669482504741834" />
+        <link rel="icon" href="data:image/svg+xml,<svg width='32' height='32' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><defs><radialGradient id='goldGradient' cx='50%25' cy='50%25' r='50%25'><stop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1' /><stop offset='70%25' style='stop-color:%23FFA500;stop-opacity:1' /><stop offset='100%25' style='stop-color:%23B8860B;stop-opacity:1' /></radialGradient></defs><circle cx='14' cy='20' r='12' fill='url(%23goldGradient)' /><circle cx='26' cy='20' r='12' fill='url(%23goldGradient)' /></svg>" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="data:image/svg+xml,<svg width='32' height='32' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><defs><radialGradient id='goldGradient' cx='50%25' cy='50%25' r='50%25'><stop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1' /><stop offset='70%25' style='stop-color:%23FFA500;stop-opacity:1' /><stop offset='100%25' style='stop-color:%23B8860B;stop-opacity:1' /></radialGradient></defs><circle cx='14' cy='20' r='12' fill='url(%23goldGradient)' /><circle cx='26' cy='20' r='12' fill='url(%23goldGradient)' /></svg>" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4669482504741834"
      crossOrigin="anonymous"></script>
       </head>

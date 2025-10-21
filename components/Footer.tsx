@@ -11,18 +11,17 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="w-8 h-8 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <img 
-                  src="/logo.svg" 
-                  alt="Barclayne Logo" 
-                  width={32} 
-                  height={32}
-                  className="object-contain"
-                  onError={(e) => {
-                    console.error('Footer logo failed to load:', e);
-                    // Fallback to text if image fails
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
+                <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="goldGradientFooter" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" style={{stopColor:'#FFD700', stopOpacity:1}} />
+                      <stop offset="70%" style={{stopColor:'#FFA500', stopOpacity:1}} />
+                      <stop offset="100%" style={{stopColor:'#B8860B', stopOpacity:1}} />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="14" cy="20" r="12" fill="url(#goldGradientFooter)" />
+                  <circle cx="26" cy="20" r="12" fill="url(#goldGradientFooter)" />
+                </svg>
               </div>
               <span className="text-xl font-bold text-white">Barclayne</span>
             </Link>

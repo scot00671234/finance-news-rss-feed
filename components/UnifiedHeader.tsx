@@ -75,18 +75,17 @@ export default function UnifiedHeader({ searchQuery, setSearchQuery, onSearch, s
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              <img 
-                src="/logo.svg" 
-                alt="Barclayne Logo" 
-                width={40} 
-                height={40}
-                className="object-contain"
-                onError={(e) => {
-                  console.error('Logo failed to load:', e);
-                  // Fallback to text if image fails
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style={{stopColor:'#FFD700', stopOpacity:1}} />
+                    <stop offset="70%" style={{stopColor:'#FFA500', stopOpacity:1}} />
+                    <stop offset="100%" style={{stopColor:'#B8860B', stopOpacity:1}} />
+                  </radialGradient>
+                </defs>
+                <circle cx="14" cy="20" r="12" fill="url(#goldGradient)" />
+                <circle cx="26" cy="20" r="12" fill="url(#goldGradient)" />
+              </svg>
             </div>
             <span className="text-xl font-light tracking-wide text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
               Barclayne
