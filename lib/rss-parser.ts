@@ -68,149 +68,16 @@ export function extractImageUrl(item: RSSFeedItem): string | undefined {
   try {
     console.log(`Extracting image for: "${item.title?.substring(0, 50)}..."`)
     
-    // Helper function to clean and validate URLs
-    const cleanUrl = (url: string, baseUrl?: string): string | null => {
-      if (!url) return null
-      
-      // Remove quotes and clean up
-      url = url.replace(/['"]/g, '').trim()
-      
-      // Handle relative URLs
-      if (url.startsWith('//')) {
-        url = 'https:' + url
-      } else if (url.startsWith('/') && baseUrl) {
-        try {
-          const base = new URL(baseUrl)
-          url = base.origin + url
-        } catch (e) {
-          return null
-        }
-      }
-      
-      // Validate URL
-      try {
-        const parsed = new URL(url)
-        if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
-          return url
-        }
-      } catch (e) {
-        return null
-      }
-      
-      return null
-    }
-
-    // Helper function to extract images from HTML content
-    const extractFromHtml = (html: string, baseUrl?: string): string | null => {
-      if (!html) return null
-      
-      // Multiple patterns for different HTML structures
-      const patterns = [
-        /<img[^>]+src="([^"]+)"/gi,
-        /<img[^>]+src='([^']+)'/gi,
-        /<img[^>]+src=([^\s>]+)/gi,
-        /background-image:\s*url\(['"]?([^'")]+)['"]?\)/gi,
-        /<figure[^>]*>.*?<img[^>]+src="([^"]+)"/gi,
-        /<picture[^>]*>.*?<img[^>]+src="([^"]+)"/gi
-      ]
-      
-      for (const pattern of patterns) {
-        let match
-        while ((match = pattern.exec(html)) !== null) {
-          const url = cleanUrl(match[1], baseUrl)
-          if (url && url.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i)) {
-            console.log('Found image in HTML:', url)
-            return url
-          }
-        }
-      }
-      
-      return null
-    }
-
-    // 1. Media content (highest quality)
-    if (item.mediaContent && Array.isArray(item.mediaContent)) {
-      for (const media of item.mediaContent) {
-        if (media?.url) {
-          const url = cleanUrl(media.url, item.link)
-          if (url && (media.type?.startsWith('image/') || url.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
-            console.log('Found image in mediaContent:', url)
-            return url
-          }
-        }
-      }
-    }
-
-    // 2. Media thumbnail
-    if (item.mediaThumbnail && Array.isArray(item.mediaThumbnail)) {
-      for (const thumbnail of item.mediaThumbnail) {
-        if (thumbnail?.url) {
-          const url = cleanUrl(thumbnail.url, item.link)
-          if (url) {
-            console.log('Found image in mediaThumbnail:', url)
-            return url
-          }
-        }
-      }
-    }
-
-    // 3. Enclosure (attachments)
-    if (item.enclosure && Array.isArray(item.enclosure)) {
-      for (const enc of item.enclosure) {
-        if (enc?.url) {
-          const url = cleanUrl(enc.url, item.link)
-          if (url && (enc.type?.startsWith('image/') || url.match(/\.(jpg|jpeg|png|gif|webp)$/i))) {
-            console.log('Found image in enclosure:', url)
-            return url
-          }
-        }
-      }
-    }
-
-    // 4. Extract from contentEncoded (often has better images)
-    if (item.contentEncoded) {
-      const url = extractFromHtml(item.contentEncoded, item.link)
-      if (url) return url
-    }
-
-    // 5. Extract from content
-    if (item.content) {
-      const url = extractFromHtml(item.content, item.link)
-      if (url) return url
-    }
-
-    // 6. Extract from description
-    if (item.description) {
-      const url = extractFromHtml(item.description, item.link)
-      if (url) return url
-    }
-
-    // 7. Extract from summary
-    if (item.summary) {
-      const url = extractFromHtml(item.summary, item.link)
-      if (url) return url
-    }
-
-    // 8. Try to find any image URL in all text content
-    const allText = [
-      item.title || '',
-      item.description || '',
-      item.content || '',
-      item.contentEncoded || '',
-      item.summary || ''
-    ].join(' ')
+    // Get all images using the enhanced extraction
+    const allImages = extractImages(item)
     
-    const urlMatch = allText.match(/https?:\/\/[^\s"'<>]+\.(jpg|jpeg|png|gif|webp|svg)(\?[^\s"'<>]*)?/gi)
-    if (urlMatch) {
-      for (const match of urlMatch) {
-        const url = cleanUrl(match, item.link)
-        if (url) {
-          console.log('Found image URL in text content:', url)
-          return url
-        }
-      }
+    if (allImages.length > 0) {
+      // Return the first (best quality) image
+      const bestImage = allImages[0]
+      console.log('Selected best image:', bestImage)
+      return bestImage
     }
-
+    
     console.log('No image found for:', item.title?.substring(0, 30))
     return undefined
 
@@ -265,7 +132,11 @@ export function extractImages(item: RSSFeedItem): string[] {
         /<img[^>]+src=([^\s>]+)/gi,
         /background-image:\s*url\(['"]?([^'")]+)['"]?\)/gi,
         /<figure[^>]*>.*?<img[^>]+src="([^"]+)"/gi,
-        /<picture[^>]*>.*?<img[^>]+src="([^"]+)"/gi
+        /<picture[^>]*>.*?<img[^>]+src="([^"]+)"/gi,
+        // Enhanced patterns for better image detection
+        /<source[^>]+srcset=["']([^"']+)["'][^>]*>/gi,
+        /https?:\/\/[^\s"'<>]+\.(jpg|jpeg|png|gif|webp|svg)(\?[^\s"'<>]*)?/gi,
+        /https?:\/\/[^\s"'<>]*\.(cdn|img|images|media|photos|pics)[^\s"'<>]*\.(jpg|jpeg|png|gif|webp)/gi
       ]
       
       for (const pattern of patterns) {
@@ -337,8 +208,54 @@ export function extractImages(item: RSSFeedItem): string[] {
       images.push(...extractFromHtml(item.summary, item.link))
     }
 
-    // Remove duplicates
-    return [...new Set(images)]
+    // 8. Enhanced text-based extraction
+    const allText = [
+      item.title || '',
+      item.description || '',
+      item.content || '',
+      item.contentEncoded || '',
+      item.summary || ''
+    ].join(' ')
+    
+    // Look for image URLs in text content
+    const textImagePatterns = [
+      /https?:\/\/[^\s"'<>]+\.(jpg|jpeg|png|gif|webp|svg)(\?[^\s"'<>]*)?/gi,
+      /https?:\/\/[^\s"'<>]*\.(cdn|img|images|media|photos|pics)[^\s"'<>]*\.(jpg|jpeg|png|gif|webp)/gi,
+      /https?:\/\/(?:i\.imgur\.com|imgur\.com\/[a-zA-Z0-9]+)\.(jpg|jpeg|png|gif|webp)/gi,
+      /https?:\/\/[^\s"'<>]*\.(unsplash|pexels|pixabay)[^\s"'<>]*\.(jpg|jpeg|png|gif|webp)/gi
+    ]
+    
+    for (const pattern of textImagePatterns) {
+      let match
+      while ((match = pattern.exec(allText)) !== null) {
+        const url = cleanUrl(match[0], item.link)
+        if (url && url.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?.*)?$/i)) {
+          images.push(url)
+        }
+      }
+    }
+
+    // Remove duplicates and sort by quality
+    const uniqueImages = [...new Set(images)]
+    
+    // Sort by quality (prefer larger images and better URLs)
+    const sortedImages = uniqueImages.sort((a, b) => {
+      // Prefer images with quality indicators in URL
+      const aQuality = a.includes('large') || a.includes('high') || a.includes('hd') ? 3 : 
+                      a.includes('medium') || a.includes('thumb') ? 2 : 1
+      const bQuality = b.includes('large') || b.includes('high') || b.includes('hd') ? 3 : 
+                      b.includes('medium') || b.includes('thumb') ? 2 : 1
+      
+      if (aQuality !== bQuality) return bQuality - aQuality
+      
+      // Prefer HTTPS over HTTP
+      if (a.startsWith('https:') && !b.startsWith('https:')) return -1
+      if (!a.startsWith('https:') && b.startsWith('https:')) return 1
+      
+      return 0
+    })
+    
+    return sortedImages
     
   } catch (error) {
     console.error('Error extracting images:', error)

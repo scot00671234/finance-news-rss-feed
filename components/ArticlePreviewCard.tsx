@@ -95,6 +95,11 @@ export default function ArticlePreviewCard({ article }: ArticlePreviewCardProps)
               src={article.imageUrl}
               alt={article.title}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to a placeholder if image fails to load
+                const target = e.target as HTMLImageElement
+                target.src = `https://via.placeholder.com/800x450/1e293b/94a3b8?text=${encodeURIComponent(article.title.substring(0, 30))}`
+              }}
             />
           </div>
         )}
