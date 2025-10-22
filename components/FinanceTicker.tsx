@@ -9,10 +9,11 @@ export default function FinanceTicker() {
   const tickerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number>()
 
-  // Fetch finance prices with error handling
+  // Fetch finance prices with real-time updates
   const fetchPrices = useCallback(async () => {
     try {
-      const response = await fetch('/api/finance-ticker', {
+      // Use real-time API with cache busting for live pricing
+      const response = await fetch(`/api/finance-realtime?t=${Date.now()}`, {
         cache: 'no-cache',
         headers: {
           'Accept': 'application/json',
@@ -24,10 +25,13 @@ export default function FinanceTicker() {
         const data = await response.json()
         if (Array.isArray(data) && data.length > 0) {
           setPrices(data)
+          console.log('Real-time finance prices updated:', new Date().toLocaleTimeString())
+          console.log('Cache status:', response.headers.get('X-Cache-Status'))
+          console.log('Data freshness:', response.headers.get('X-Data-Freshness'))
         }
       }
     } catch (error) {
-      console.error('Error fetching finance prices:', error)
+      console.error('Error fetching real-time finance prices:', error)
     } finally {
       setLoading(false)
     }
@@ -38,9 +42,9 @@ export default function FinanceTicker() {
     fetchPrices()
   }, [fetchPrices])
 
-  // Refresh prices every 60 seconds (less frequent to reduce lag)
+  // Refresh prices every 15 seconds for real-time data
   useEffect(() => {
-    const interval = setInterval(fetchPrices, 60000)
+    const interval = setInterval(fetchPrices, 15000)
     return () => clearInterval(interval)
   }, [fetchPrices])
 

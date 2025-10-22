@@ -11,28 +11,30 @@ export default function PersistentTicker() {
   const tickerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number>()
 
-  // Fetch crypto prices using smart cache
+  // Fetch crypto prices using real-time API
   const fetchPrices = async () => {
     try {
-      // Use smart cache API for consistent pricing with background updates
-      const response = await fetch('/api/smart-crypto?action=ticker', {
-        cache: 'default', // Allow browser caching
+      // Use real-time API with cache busting for live pricing
+      const response = await fetch(`/api/crypto-realtime?t=${Date.now()}`, {
+        cache: 'no-cache', // Disable browser caching
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache'
         }
       })
       if (response.ok) {
         const data = await response.json()
-        setPrices(data.tickerData)
+        setPrices(data)
         
         // Update price manager with fresh data
-        priceManager.updatePrices(data.tickerData)
+        priceManager.updatePrices(data)
         
-        console.log('Smart cache prices updated:', new Date().toLocaleTimeString())
+        console.log('Real-time prices updated:', new Date().toLocaleTimeString())
         console.log('Cache status:', response.headers.get('X-Cache-Status'))
+        console.log('Data freshness:', response.headers.get('X-Data-Freshness'))
       }
     } catch (error) {
-      console.error('Error fetching smart cache crypto prices:', error)
+      console.error('Error fetching real-time crypto prices:', error)
       
       // Fallback to price manager data
       const cachedPrices = priceManager.getAllPrices().slice(0, 10)
@@ -50,9 +52,9 @@ export default function PersistentTicker() {
     fetchPrices()
   }, [])
 
-  // Refresh prices every 15 seconds (smart cache handles rate limiting)
+  // Refresh prices every 10 seconds for real-time updates
   useEffect(() => {
-    const interval = setInterval(fetchPrices, 15000)
+    const interval = setInterval(fetchPrices, 10000)
     return () => clearInterval(interval)
   }, [])
 

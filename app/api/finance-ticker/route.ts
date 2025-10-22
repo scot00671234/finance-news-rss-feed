@@ -6,6 +6,30 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url)
+    const cacheBust = searchParams.get('t')
+    
+    // For real-time pricing, always bypass cache when cache busting is requested
+    if (cacheBust) {
+      console.log('📊 Real-time finance ticker data requested - bypassing all caches')
+      
+      // Always fetch fresh data from API for real-time data
+      const freshTickerData = await financeAPI.getTickerData()
+      
+      // Update the manager with fresh data
+      financeManager.updateFinanceData('ticker', freshTickerData)
+      
+      return NextResponse.json(freshTickerData, {
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'X-Cache-Status': 'REAL-TIME',
+          'X-Data-Freshness': 'LIVE'
+        }
+      })
+    }
+    
     // Check if we have fresh data in the manager
     const cachedTickerData = financeManager.getTickerData()
     const isStocksFresh = financeManager.isDataFresh('stocks')
@@ -18,7 +42,7 @@ export async function GET(request: NextRequest) {
       console.log('📊 Returning cached finance ticker data')
       return NextResponse.json(cachedTickerData, {
         headers: {
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+          'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
           'X-Cache-Status': 'HIT',
           'X-Data-Freshness': 'CACHED'
         }
@@ -34,7 +58,7 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(tickerData, {
       headers: {
-        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
         'X-Cache-Status': 'MISS',
         'X-Data-Freshness': 'LIVE'
       }

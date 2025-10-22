@@ -4,7 +4,7 @@ import { FinancePrice } from '@/lib/finance-api'
 class FinanceManager {
   private data: Map<string, FinancePrice[]> = new Map()
   private lastUpdate: Map<string, number> = new Map()
-  private cacheTimeout = 5 * 60 * 1000 // 5 minutes
+  private cacheTimeout = 2 * 60 * 1000 // 2 minutes for more real-time updates
 
   // Update finance data for a specific type
   updateFinanceData(type: string, data: FinancePrice[]) {

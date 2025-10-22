@@ -146,10 +146,37 @@ class FinanceAPI {
       const meta = result.meta
       const quote = result.indicators.quote[0]
       
-      const currentPrice = meta.regularMarketPrice || meta.previousClose || 0
+      // Determine the best current price based on trading hours
+      let currentPrice = 0
+      let priceSource = ''
+      
+      // Check if we're in post-market hours
+      if (meta.postMarketPrice && meta.postMarketPrice > 0) {
+        currentPrice = meta.postMarketPrice
+        priceSource = 'postMarketPrice'
+      }
+      // Check if we're in pre-market hours
+      else if (meta.preMarketPrice && meta.preMarketPrice > 0) {
+        currentPrice = meta.preMarketPrice
+        priceSource = 'preMarketPrice'
+      }
+      // Use regular market price during market hours
+      else if (meta.regularMarketPrice && meta.regularMarketPrice > 0) {
+        currentPrice = meta.regularMarketPrice
+        priceSource = 'regularMarketPrice'
+      }
+      // Fallback to previous close only if no real-time price is available
+      else {
+        currentPrice = meta.previousClose || 0
+        priceSource = 'previousClose'
+      }
+      
       const previousClose = meta.previousClose || 0
       const change = currentPrice - previousClose
       const changePercent = previousClose ? (change / previousClose) * 100 : 0
+      
+      // Log price source for debugging
+      console.log(`${symbol}: Using ${priceSource} = $${currentPrice} (prev: $${previousClose})`)
       
       return {
         id: symbol,
